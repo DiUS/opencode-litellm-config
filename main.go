@@ -10,6 +10,8 @@ import (
 	"time"
 )
 
+var version = "dev"
+
 const usage = `Usage: %s [flags] <output-file>
 
 Generates OpenCode config from LiteLLM models endpoint.
@@ -63,6 +65,10 @@ type Config struct {
 }
 
 func main() {
+	if len(os.Args) > 1 && (os.Args[1] == "--version" || os.Args[1] == "-v") {
+		fmt.Println(version)
+		os.Exit(0)
+	}
 	cfg := parseFlags()
 	apiKey := requireEnvVar("DIUS_LITELLM_SK")
 	models := fetchModels(cfg.baseURL, apiKey)
