@@ -18,12 +18,12 @@ Generates OpenCode config from LiteLLM models endpoint.
 
 Flags:
   -h, --help                 Show help
-  --base-url string          LiteLLM base URL (default "https://litellm.dius.network/v1")
-  --provider-name string     Provider display name (default "LiteLLM Dius")
-  --provider-key string      Provider key in config (default "litellm-dius")
+  --base-url string          LiteLLM base URL (default "http://localhost:4000/v1")
+  --provider-name string     Provider display name (default "LiteLLM")
+  --provider-key string      Provider key in config (default "litellm")
 
 Environment:
-  DIUS_LITELLM_SK            Required. API key for LiteLLM
+  LITELLM_API_KEY            Required. API key for LiteLLM
 `
 
 type cliConfig struct {
@@ -70,7 +70,7 @@ func main() {
 		os.Exit(0)
 	}
 	cfg := parseFlags()
-	apiKey := requireEnvVar("DIUS_LITELLM_SK")
+	apiKey := requireEnvVar("LITELLM_API_KEY")
 	models := fetchModels(cfg.baseURL, apiKey)
 	config := buildConfig(cfg, models)
 	createParentDirs(cfg.outputFile)
@@ -79,9 +79,9 @@ func main() {
 }
 
 func parseFlags() cliConfig {
-	baseURL := flag.String("base-url", "https://litellm.dius.network/v1", "LiteLLM base URL")
-	providerName := flag.String("provider-name", "LiteLLM Dius", "Provider display name")
-	providerKey := flag.String("provider-key", "litellm-dius", "Provider key in config")
+	baseURL := flag.String("base-url", "http://localhost:4000/v1", "LiteLLM base URL")
+	providerName := flag.String("provider-name", "LiteLLM", "Provider display name")
+	providerKey := flag.String("provider-key", "litellm", "Provider key in config")
 
 	flag.Usage = func() {
 		fmt.Fprintf(os.Stderr, usage, os.Args[0])

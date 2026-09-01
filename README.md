@@ -1,8 +1,8 @@
-# opencode-litellm-config
+# litellm-config-gen
 
-Generate an [OpenCode](https://opencode.ai) JSON config for connecting to the DiUS LiteLLM proxy (OpenAI-compatible endpoint). Queries the LiteLLM `/models` endpoint to define available models.
+Generate an [OpenCode](https://opencode.ai) JSON config for connecting to a LiteLLM proxy (OpenAI-compatible endpoint). Queries the LiteLLM `/models` endpoint to define available models.
 
-You can run the latest binary, or run the project with Go
+You can run the latest binary, or run the project with Go.
 
 ## Installation
 
@@ -10,23 +10,23 @@ Download the latest binary from [Releases](https://github.com/DiUS/opencode-lite
 
 ```bash
 # macOS (Apple Silicon)
-curl -LO https://github.com/DiUS/opencode-litellm-config/releases/latest/download/opencode-litellm-config-darwin-arm64
-chmod +x opencode-litellm-config-darwin-arm64
+curl -LO https://github.com/DiUS/opencode-litellm-config/releases/latest/download/litellm-config-gen-darwin-arm64
+chmod +x litellm-config-gen-darwin-arm64
 
 # macOS (Intel)
-curl -LO https://github.com/DiUS/opencode-litellm-config/releases/latest/download/opencode-litellm-config-darwin-amd64
-chmod +x opencode-litellm-config-darwin-amd64
+curl -LO https://github.com/DiUS/opencode-litellm-config/releases/latest/download/litellm-config-gen-darwin-amd64
+chmod +x litellm-config-gen-darwin-amd64
 
 # Linux
-curl -LO https://github.com/DiUS/opencode-litellm-config/releases/latest/download/opencode-litellm-config-linux-amd64
-chmod +x opencode-litellm-config-linux-amd64
+curl -LO https://github.com/DiUS/opencode-litellm-config/releases/latest/download/litellm-config-gen-linux-amd64
+chmod +x litellm-config-gen-linux-amd64
 ```
 
 ## Usage
 
 ```bash
-export DIUS_LITELLM_SK="your-api-key"
-./opencode-litellm-config-darwin-arm64 output.json
+export LITELLM_API_KEY="your-api-key"
+./litellm-config-gen-darwin-arm64 output.json
 ```
 
 Or run from source:
@@ -41,9 +41,9 @@ The output json file can be placed in an appropriate [OpenCode config location](
 
 ### Flags
 
-- `--base-url` - LiteLLM base URL (default: `https://litellm.dius.network/v1`)
-- `--provider-name` - Provider display name (default: `LiteLLM Dius`)
-- `--provider-key` - Provider key in config (default: `litellm-dius`)
+- `--base-url` - LiteLLM base URL (default: `http://localhost:4000/v1`)
+- `--provider-name` - Provider display name (default: `LiteLLM`)
+- `--provider-key` - Provider key in config (default: `litellm`)
 - `-v, --version` - Print version
 
 ## Contributing + Releases

@@ -1,4 +1,4 @@
-BINARY := opencode-litellm-config
+BINARY := litellm-config-gen
 DIST := dist
 
 PLATFORMS := linux/amd64 darwin/amd64 darwin/arm64 windows/amd64
